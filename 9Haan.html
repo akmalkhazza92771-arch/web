@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9-Haan | Premium Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-primary: #FF8C00; 
+            --color-secondary: #0b0b0b;
+            --color-light: #fdfdfd;
+            --color-bg-dark: #121212;
+            --color-text-muted: #888888;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: var(--color-light);
+            color: var(--color-secondary);
+            overflow-x: hidden;
+        }
+
+        .container { width: 85%; max-width: 1200px; margin: auto; }
+
+        /* HEADER */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            color: var(--color-light);
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--color-primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        header .logo { 
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-primary); 
+            font-size: 1.8rem; 
+            font-weight: 900; 
+            letter-spacing: 3px; 
+            cursor: pointer;
+        }
+
+        header nav ul { list-style: none; display: flex; }
+        header nav ul li { margin-left: 30px; }
+        header nav ul li a {
+            color: #bbb;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        header nav ul li a:hover, header nav ul li a.active { color: var(--color-primary); }
+
+        /* PAGE SYSTEM */
+        .page { display: none; min-height: 80vh; animation: pageIn 0.6s ease-out; }
+        .page.active { display: block; }
+        @keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* HERO SECTION */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('9haan.webp') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 7vw, 4rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        .hero-content h2 span { color: var(--color-primary); }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: 16px 45px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(255, 140, 0, 0.2);
+            cursor: pointer;
+            border: none;
+            margin: 10px 0;
+            width: fit-content;
+        }
+
+        .btn:hover { 
+            background: white; 
+            color: var(--color-primary); 
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        /* LAYANAN SECTION */
+        .content-section { padding: 100px 0; background: #f9f9f9; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h3 { font-size: 2.5rem; font-family: 'Montserrat'; font-weight: 800; }
+        .section-title div { width: 60px; height: 4px; background: var(--color-primary); margin: 10px auto; }
+
+        .layanan-list { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+
+        .layanan-item {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .layanan-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--color-primary);
+        }
+
+        .service-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        /* DETAIL PAGE STYLES */
+        .detail-header {
+            background: var(--color-secondary);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .detail-content { 
+            padding: 80px 0; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .detail-content h3 { font-size: 2rem; margin-bottom: 20px; font-family: 'Montserrat'; }
+        .detail-content p { max-width: 800px; margin-bottom: 30px; color: #555; }
+
+        /* KONTAK SECTION */
+        .contact-page { padding: 100px 0; background: var(--color-secondary); color: white; text-align: center; }
+        .contact-card {
+            max-width: 600px;
+            margin: 40px auto;
+            background: rgba(255,255,255,0.05);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .contact-info a {
+            display: block;
+            color: var(--color-primary);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 15px 0 30px;
+        }
+
+        footer { background: #000; color: #555; text-align: center; padding: 40px 0; font-size: 0.9rem; }
+        footer b { color: var(--color-primary); }
+
+        @media (max-width: 768px) {
+            header .container { flex-direction: column; gap: 15px; }
+            header nav ul li { margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="logo" onclick="showPage('beranda')">9-HAAN</h1>
+            <nav>
+                <ul>
+                    <li><a onclick="showPage('beranda')" id="nav-beranda" class="active">Beranda</a></li>
+                    <li><a onclick="showPage('layanan')" id="nav-layanan">Layanan</a></li>
+                    <li><a onclick="showPage('kontak')" id="nav-kontak">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="beranda" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Selamat Datang<br><span>Di 9-Haan</span></h2>
+                <a onclick="showPage('layanan')" class="btn">Lihat Layanan</a>
+            </div>
+        </section>
+    </main>
+
+    <main id="layanan" class="page">
+        <section class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h3>Layanan Unggulan</h3>
+                    <div></div>
+                </div>
+                <div class="layanan-list">
+                    <div class="layanan-item" onclick="showPage('detail-guesthouse')">
+                        <img src="9haanGuestHouse.jpg" alt="Guest House" class="service-logo">
+                        <h4>9-Haan Guest House</h4>
+                        <small style="color:var(--color-primary); font-weight:bold; margin-top:15px; display:block;">Klik untuk detail →</small>
+                    </div>
+                    <div class="layanan-item" onclick="showPage('detail-rumahpintar')">
+                        <img src="RPH.png" alt="Rumah Pintar" class="service-logo">
+                        <h4>Rumah Pintar Haan</h4>
+                        <small style="color:var(--color-primary); font-weight:bold; margin-top:15px; display:block;">Klik untuk detail →</small>
+                    </div>
+                    <div class="layanan-item" onclick="showPage('detail-fitness')">
+                        <img src="9haanFitness.jpg" alt="Fitness" class="service-logo">
+                        <h4>9-Haan Fitness</h4>
+                        <small style="color:var(--color-primary); font-weight:bold; margin-top:15px; display:block;">Klik untuk detail →</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main id="detail-guesthouse" class="page">
+        <div class="detail-header"><h2>9-Haan Guest House</h2></div>
+        <div class="container detail-content">
+            <h3>Penginapan Eksklusif</h3>
+            <p>Kami menawarkan pengalaman menginap yang tak terlupakan dengan fasilitas lengkap mulai dari WiFi cepat hingga layanan kamar 24 jam.</p>
+            <a onclick="showPage('kontak')" class="btn">Pesan Kamar Sekarang</a>
+            <a onclick="showPage('layanan')" class="btn">Kembali ke Layanan</a>
+        </div>
+    </main>
+
+    <main id="detail-rumahpintar" class="page">
+        <div class="detail-header"><h2>Rumah Pintar Haan</h2></div>
+        <div class="container detail-content">
+            <h3>Pusat Edukasi Modern</h3>
+            <p>Fasilitas belajar yang dirancang untuk meningkatkan fokus dan kreativitas Anda dengan teknologi terkini.</p>
+            <a onclick="showPage('kontak')" class="btn">Daftar Sekarang</a>
+            <a onclick="showPage('layanan')" class="btn">Kembali ke Layanan</a>
+        </div>
+    </main>
+
+    <main id="detail-fitness" class="page">
+        <div class="detail-header"><h2>9-Haan Fitness</h2></div>
+        <div class="container detail-content">
+            <h3>Body & Mind Wellness</h3>
+            <p>Capai target kebugaran Anda dengan alat-alat gym kelas dunia dan instruktur berpengalaman.</p>
+            <a onclick="showPage('kontak')" class="btn">Gabung Member</a>
+            <a onclick="showPage('layanan')" class="btn">Kembali ke Layanan</a>
+        </div>
+    </main>
+
+    <main id="kontak" class="page">
+        <section class="contact-page">
+            <div class="container">
+                <div class="section-title">
+                    <h3 style="color: white;">Hubungi Kami</h3>
+                    <div></div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-info">
+                        <p>WhatsApp Hotline</p>
+                        <a href="https://wa.me/621234567890">+62 123 4567 890</a>
+                        <p>Email Resmi</p>
+                        <a href="mailto:info@9haan.com" style="font-size: 1.2rem;">info@9haan.com</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <b>9-HAAN</b>. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+
+            const navLinks = document.querySelectorAll('header nav ul li a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            if (pageId.includes('detail') || pageId === 'layanan') {
+                document.getElementById('nav-layanan').classList.add('active');
+            } else if (document.getElementById('nav-' + pageId)) {
+                document.getElementById('nav-' + pageId).classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
